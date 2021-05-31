@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="art-gallery\lodepng.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="art-gallery\main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="art-gallery\shaderprogram.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="art-gallery\constants.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\lodepng.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\shaderprogram.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="Shaders\f_simplest.glsl">
+      <Filter>Shadery</Filter>
+    </None>
+    <None Include="Shaders\g_simplest.glsl">
+      <Filter>Shadery</Filter>
+    </None>
+    <None Include="Shaders\v_simplest.glsl">
+      <Filter>Shadery</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{bc791af1-7b70-41e0-91d0-90334bb41772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{2d01b58a-6975-4825-8779-c486b8247cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tekstury">
+      <UniqueIdentifier>{a5571a85-6881-4535-956f-67efff57d81e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shadery">
+      <UniqueIdentifier>{6ad78fa9-150a-4a83-b1f6-6d3b2393eec5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\metal.png">
+      <Filter>Tekstury</Filter>
+    </Image>
+    <Image Include="Textures\metal_spec.png">
+      <Filter>Tekstury</Filter>
+    </Image>
+    <Image Include="Textures\sky.png">
+      <Filter>Tekstury</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
