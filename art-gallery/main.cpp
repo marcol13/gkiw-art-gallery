@@ -8,13 +8,36 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
+#include "Camera.h"
 #include "constants.h"
 #include "lodepng.h"
 #include "shaderprogram.h"
 #include "Models/myTeapot.h"
 
-float speed_x=0;
-float speed_y=0;
+float temp_x = 0;
+float temp_y = 0;
+float temp_z = 0;
+float pos_x = 0;
+float pos_y = 0;
+float pos_z = -2.5;
+
+float cursor_x = 0;
+float cursor_y = 0;
+
+double prev_mouse_x = double(window_width)/2;
+double prev_mouse_y = double(window_height)/2;
+
+float rotate_x = 0;
+float rotate_y = 0;
+
+glm::vec2 mAngle(PI / 2, 0);
+
+glm::vec3 pos_observer = glm::vec3(pos_x, pos_y, pos_z);
+glm::vec3 pos_center = glm::vec3(0,0,0);
+glm::vec3 pos_noseVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
+float delta_time = 0.0f;
 float aspectRatio=1;
 
 ShaderProgram *sp;
@@ -35,13 +58,36 @@ void error_callback(int error, const char* description) {
 	fputs(description, stderr);
 }
 
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	cursor_x = mouse_sensitivity * (xpos - prev_mouse_x);
+	cursor_y = mouse_sensitivity * (prev_mouse_y - ypos);
+
+	prev_mouse_x = xpos;
+	prev_mouse_y = ypos;
+
+	return;
+}
+
 
 void keyCallback(GLFWwindow* window,int key,int scancode,int action,int mods) {
     if (action==GLFW_PRESS) {
-		//poruszanie WSAD
+		if (key == GLFW_KEY_A)
+			temp_x += 2;
+		if (key == GLFW_KEY_D)
+			temp_x -= 2;
+		if (key == GLFW_KEY_W)
+			temp_z += 2;
+		if (key == GLFW_KEY_S)
+			temp_z -= 2;
+		if (key == GLFW_KEY_ESCAPE)
+			exit(0);
     }
     if (action==GLFW_RELEASE) {
-        //poruszanie WSAD
+		if (key == GLFW_KEY_A || key == GLFW_KEY_D)
+			temp_x = 0;
+		if (key == GLFW_KEY_W || key == GLFW_KEY_S)
+			temp_z = 0;
     }
 }
 
@@ -83,6 +129,8 @@ void initOpenGLProgram(GLFWwindow* window) {
 	glEnable(GL_DEPTH_TEST);
 	glfwSetWindowSizeCallback(window,windowResizeCallback);
 	glfwSetKeyCallback(window,keyCallback);
+	glfwSetCursorPosCallback(window, cursor_position_callback);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
 	sp=new ShaderProgram("Shaders/v_simplest.glsl",NULL,"Shaders/f_simplest.glsl");
 	tex0 = readTexture("Textures/metal.png");
@@ -100,6 +148,9 @@ void freeOpenGLProgram(GLFWwindow* window) {
 }
 
 
+void walk() {
+
+}
 
 
 //Procedura rysująca zawartość sceny
@@ -107,19 +158,34 @@ void drawScene(GLFWwindow* window) {
 	//************Tutaj umieszczaj kod rysujący obraz******************l
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glm::mat4 V=glm::lookAt(
-         glm::vec3(0, 0, -2.5),
-         glm::vec3(0,0,0),
-         glm::vec3(0.0f,1.0f,0.0f)); //Wylicz macierz widoku
+	/*pos_observer = glm::vec3(pos_x, pos_y, pos_z);
+	//pos_center.x += cursor_x;
+	//pos_center.y += cursor_y;
+	//pos_center = glm::normalize(glm::vec3(rotate_x, rotate_y, -1.0f));
 
-    glm::mat4 P=glm::perspective(50.0f*PI/180.0f, aspectRatio, 0.01f, 50.0f); //Wylicz macierz rzutowania
+	glm::vec3 direction;
+	direction.x = cos(mAngle.y) * cos(mAngle.x);
+	direction.y = sin(mAngle.y);
+	direction.z = sin(mAngle.x) * cos(mAngle.y);
+	pos_center = glm::normalize(direction);
+	//pos_center = pos_observer + pos_center;
+	glm::vec3 right = glm::cross(pos_center, glm::vec3(0, 1.0f, 0));
+	pos_noseVector = glm::cross(right, pos_center);
+
+
+	glm::mat4 V = glm::lookAt(
+		pos_observer,
+		pos_observer + glm::vec3(pos_center.x,pos_center.y, pos_center.z),
+        pos_noseVector); //Wylicz macierz widoku
+
+	std::cout << pos_center.x << ", " << pos_center.y << ", " << pos_center.z << std::endl;*/
 
     glm::mat4 M=glm::mat4(1.0f);
 
     sp->use();//Aktywacja programu cieniującego
     //Przeslij parametry programu cieniującego do karty graficznej
     glUniformMatrix4fv(sp->u("P"),1,false,glm::value_ptr(P));
-    glUniformMatrix4fv(sp->u("V"),1,false,glm::value_ptr(V));
+    glUniformMatrix4fv(sp->u("V"),1,false,glm::value_ptr(Camera::instance().getMatrix()));
     glUniformMatrix4fv(sp->u("M"),1,false,glm::value_ptr(M));
 
     glEnableVertexAttribArray(sp->a("vertex"));  //Włącz przesyłanie danych do atrybutu vertex
@@ -164,7 +230,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	window = glfwCreateWindow(1920, 1080, "Art gallery", NULL, NULL);  //Utwórz okno 500x500 o tytule "OpenGL" i kontekst OpenGL.
+	window = glfwCreateWindow(window_width, window_height, "Art gallery", glfwGetPrimaryMonitor(), NULL);  //Utwórz okno 500x500 o tytule "OpenGL" i kontekst OpenGL.
 
 	if (!window) //Jeżeli okna nie udało się utworzyć, to zamknij program
 	{
@@ -187,6 +253,24 @@ int main(void)
 	glfwSetTime(0); //Zeruj timer
 	while (!glfwWindowShouldClose(window)) //Tak długo jak okno nie powinno zostać zamknięte
 	{
+		
+		delta_time = glfwGetTime();
+
+		Camera::instance().move(temp_x * delta_time, temp_y * delta_time, temp_z * delta_time);
+		Camera::instance().rotate(cursor_x * delta_time, cursor_y * delta_time);
+		
+
+		std::cout << cursor_x * delta_time << std::endl;
+		/*mAngle.x += cursor_x * delta_time;
+		mAngle.y = glm::clamp(mAngle.y + cursor_y * delta_time, -PI / 2, PI / 2);*/
+
+		/*pos_x += temp_z * delta_time * cos(mAngle.x) + temp_x * sin(mAngle.x) * delta_time;
+		pos_y += temp_y * glfwGetTime();
+		pos_z += temp_z * delta_time * sin(mAngle.x) - temp_x * delta_time * cos(mAngle.x);
+		*/
+		cursor_x = 0;
+		cursor_y = 0;
+
         glfwSetTime(0); //Zeruj timer - na razie nie potrzebny, później się wykorzysta
 		drawScene(window); //Wykonaj procedurę rysującą
 		glfwPollEvents(); //Wykonaj procedury callback w zalezności od zdarzeń jakie zaszły.

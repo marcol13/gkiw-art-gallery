@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="art-gallery\Camera.cpp" />
     <ClCompile Include="art-gallery\lodepng.cpp" />
     <ClCompile Include="art-gallery\main.cpp" />
     <ClCompile Include="art-gallery\shaderprogram.cpp" />
@@ -30,6 +31,7 @@
     <None Include="Shaders\v_simplest.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="art-gallery\Camera.h" />
     <ClInclude Include="art-gallery\constants.h" />
     <ClInclude Include="art-gallery\lodepng.h" />
     <ClInclude Include="art-gallery\shaderprogram.h" />
