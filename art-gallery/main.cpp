@@ -9,7 +9,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
-#include <windows.h>
 #include "Camera.h"
 #include "constants.h"
 #include "lodepng.h"
@@ -63,10 +62,10 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	cursor_x = mouse_sensitivity * (xpos - prev_mouse_x);
 	cursor_y = mouse_sensitivity * (prev_mouse_y - ypos);
+
 	prev_mouse_x = xpos;
 	prev_mouse_y = ypos;
-	//prev_mouse_x = window_width/2;
-	//prev_mouse_y = window_height/2;
+
 	return;
 }
 
@@ -131,7 +130,9 @@ void initOpenGLProgram(GLFWwindow* window) {
 	glfwSetWindowSizeCallback(window,windowResizeCallback);
 	glfwSetKeyCallback(window,keyCallback);
 	glfwSetCursorPosCallback(window, cursor_position_callback);
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	// KURWA JEBANA 
 
 	sp=new ShaderProgram("Shaders/v_simplest.glsl",NULL,"Shaders/f_simplest.glsl");
 	tex0 = readTexture("Textures/metal.png");
@@ -231,6 +232,9 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
+	//***********************************
+	// 	  widok pełnoekranowy / w oknie
+	//***********************************
 	//window = glfwCreateWindow(window_width, window_height, "Art gallery", glfwGetPrimaryMonitor(), NULL);  //Utwórz okno 500x500 o tytule "OpenGL" i kontekst OpenGL.
 	window = glfwCreateWindow(window_width, window_height, "Art gallery", NULL, NULL);  //Utwórz okno 500x500 o tytule "OpenGL" i kontekst OpenGL.
 
@@ -261,10 +265,10 @@ int main(void)
 		Camera::instance().move(temp_x * delta_time, temp_y * delta_time, temp_z * delta_time);
 		Camera::instance().rotate(cursor_x * delta_time, cursor_y * delta_time);
 		
-		//Jak chcesz obracać się z bugiem to zakomentuj to niżej
-		SetCursorPos(window_width / 2, window_height / 2);
 
-		std::cout << cursor_x * delta_time << std::endl;
+
+		//std::cout << cursor_x * delta_time << std::endl;
+	
 		/*mAngle.x += cursor_x * delta_time;
 		mAngle.y = glm::clamp(mAngle.y + cursor_y * delta_time, -PI / 2, PI / 2);*/
 
