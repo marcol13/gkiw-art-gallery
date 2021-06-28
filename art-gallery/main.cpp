@@ -13,6 +13,7 @@
 #include "constants.h"
 #include "lodepng.h"
 #include "shaderprogram.h"
+#include "Model.h"
 #include "Models/myTeapot.h"
 #include "Models/Corridor.h"
 #include "Models/Venus.h"
@@ -49,11 +50,13 @@ ShaderProgram* sp;
 
 
 //Odkomentuj, żeby rysować czajnik
-float* vertices = myCorridor2Vertices;
-float* normals = myCorridor2VertexNormals;
-float* texCoords = myCorridor2TexCoords;
-float* colors = myCorridor2Colors;
-int vertexCount = myCorridor2VertexCount;
+//float* vertices = myCorridor2Vertices;
+//float* normals = myCorridor2VertexNormals;
+//float* texCoords = myCorridor2TexCoords;
+//float* colors = myCorridor2Colors;
+//int vertexCount = myCorridor2VertexCount;
+
+Model* korytarz = new Model("Skeleton");
 
 GLuint tex0;
 GLuint tex1;
@@ -164,30 +167,6 @@ void drawScene(GLFWwindow* window) {
 	//************Tutaj umieszczaj kod rysujący obraz******************l
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	/*pos_observer = glm::vec3(pos_x, pos_y, pos_z);
-	//pos_center.x += cursor_x;
-	//pos_center.y += cursor_y;
-	//pos_center = glm::normalize(glm::vec3(rotate_x, rotate_y, -1.0f));
-
-	glm::vec3 direction;
-	direction.x = cos(mAngle.y) * cos(mAngle.x);
-	direction.y = sin(mAngle.y);
-	direction.z = sin(mAngle.x) * cos(mAngle.y);
-	pos_center = glm::normalize(direction);
-	//pos_center = pos_observer + pos_center;
-	glm::vec3 right = glm::cross(pos_center, glm::vec3(0, 1.0f, 0));
-	pos_noseVector = glm::cross(right, pos_center);
-
-
-	glm::mat4 V = glm::lookAt(
-		pos_observer,
-		pos_observer + glm::vec3(pos_center.x,pos_center.y, pos_center.z),
-		pos_noseVector); //Wylicz macierz widoku
-
-	std::cout << pos_center.x << ", " << pos_center.y << ", " << pos_center.z << std::endl;*/
-
-
-
 	glm::mat4 M = glm::mat4(1.0f);
 	M = glm::rotate(M, 90.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -198,16 +177,16 @@ void drawScene(GLFWwindow* window) {
 	glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
 
 	glEnableVertexAttribArray(sp->a("vertex"));  //Włącz przesyłanie danych do atrybutu vertex
-	glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, vertices); //Wskaż tablicę z danymi dla atrybutu vertex
+	glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, korytarz->vertices.get()); //Wskaż tablicę z danymi dla atrybutu vertex
 
 	glEnableVertexAttribArray(sp->a("color"));  //Włącz przesyłanie danych do atrybutu color
-	glVertexAttribPointer(sp->a("color"), 4, GL_FLOAT, false, 0, colors); //Wskaż tablicę z danymi dla atrybutu color
+	glVertexAttribPointer(sp->a("color"), 4, GL_FLOAT, false, 0, korytarz->colors.get()); //Wskaż tablicę z danymi dla atrybutu color
 
 	glEnableVertexAttribArray(sp->a("normal"));  //Włącz przesyłanie danych do atrybutu normal
-	glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, normals); //Wskaż tablicę z danymi dla atrybutu normal
+	glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, korytarz->vertex_normals.get()); //Wskaż tablicę z danymi dla atrybutu normal
 
 	glEnableVertexAttribArray(sp->a("texCoord0"));  //Włącz przesyłanie danych do atrybutu texCoord
-	glVertexAttribPointer(sp->a("texCoord0"), 2, GL_FLOAT, false, 0, texCoords); //Wskaż tablicę z danymi dla atrybutu texCoord
+	glVertexAttribPointer(sp->a("texCoord0"), 2, GL_FLOAT, false, 0, korytarz->textures.get()); //Wskaż tablicę z danymi dla atrybutu texCoord
 
 	glUniform1i(sp->u("textureMap0"), 0);
 	glActiveTexture(GL_TEXTURE0);
@@ -217,7 +196,7 @@ void drawScene(GLFWwindow* window) {
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, tex1);
 
-	glDrawArrays(GL_TRIANGLES, 0, vertexCount); //Narysuj obiekt
+	glDrawArrays(GL_TRIANGLES, 0, korytarz->vertexCount); //Narysuj obiekt
 
 	glDisableVertexAttribArray(sp->a("vertex"));  //Wyłącz przesyłanie danych do atrybutu vertex
 	glDisableVertexAttribArray(sp->a("color"));  //Wyłącz przesyłanie danych do atrybutu color

@@ -22,6 +22,7 @@
     <ClCompile Include="art-gallery\Camera.cpp" />
     <ClCompile Include="art-gallery\lodepng.cpp" />
     <ClCompile Include="art-gallery\main.cpp" />
+    <ClCompile Include="art-gallery\Model.cpp" />
     <ClCompile Include="art-gallery\shaderprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +35,13 @@
     <ClInclude Include="art-gallery\Camera.h" />
     <ClInclude Include="art-gallery\constants.h" />
     <ClInclude Include="art-gallery\lodepng.h" />
+    <ClInclude Include="art-gallery\Model.h" />
+    <ClInclude Include="art-gallery\objloader.h" />
     <ClInclude Include="art-gallery\shaderprogram.h" />
+    <ClInclude Include="art-gallery\Vertex.h" />
+    <ClInclude Include="Models\Corridor.h" />
+    <ClInclude Include="Models\Corridor2.h" />
+    <ClInclude Include="Models\Venus.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\metal.png" />

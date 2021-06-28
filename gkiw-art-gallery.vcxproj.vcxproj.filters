@@ -13,6 +13,9 @@
     <ClCompile Include="art-gallery\Camera.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="art-gallery\Model.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="art-gallery\constants.h">
@@ -25,6 +28,24 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="art-gallery\Camera.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\Model.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Venus.h">
+      <Filter>Pliki nagłówkowe\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Corridor.h">
+      <Filter>Pliki nagłówkowe\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Corridor2.h">
+      <Filter>Pliki nagłówkowe\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\Vertex.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\objloader.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
@@ -52,6 +73,9 @@
     </Filter>
     <Filter Include="Shadery">
       <UniqueIdentifier>{6ad78fa9-150a-4a83-b1f6-6d3b2393eec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Objects">
+      <UniqueIdentifier>{9a9dfde7-8b25-4856-904e-801a3fe19c09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

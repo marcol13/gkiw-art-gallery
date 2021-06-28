@@ -10,5 +10,5 @@ in vec4 ic;
 void main(void) {
 	vec4 texColor=texture(textureMap0,iTexCoord0); //Pobranie koloru
 
-	pixelColor = ic;
+	pixelColor = texColor;
 }
