@@ -23,6 +23,7 @@ Place, Fifth Floor, Boston, MA  02110 - 1301  USA
 
 
 #include <GL/glew.h>
+#include <string>
 #include "stdio.h"
 
 

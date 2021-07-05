@@ -16,6 +16,7 @@
     <ClCompile Include="art-gallery\Model.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="art-gallery\textureprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="art-gallery\constants.h">
@@ -46,6 +47,12 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="art-gallery\objloader.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\textureprogram.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="art-gallery\readtexture.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>

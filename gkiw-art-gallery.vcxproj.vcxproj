@@ -24,6 +24,7 @@
     <ClCompile Include="art-gallery\main.cpp" />
     <ClCompile Include="art-gallery\Model.cpp" />
     <ClCompile Include="art-gallery\shaderprogram.cpp" />
+    <ClCompile Include="art-gallery\textureprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -37,7 +38,9 @@
     <ClInclude Include="art-gallery\lodepng.h" />
     <ClInclude Include="art-gallery\Model.h" />
     <ClInclude Include="art-gallery\objloader.h" />
+    <ClInclude Include="art-gallery\readtexture.h" />
     <ClInclude Include="art-gallery\shaderprogram.h" />
+    <ClInclude Include="art-gallery\textureprogram.h" />
     <ClInclude Include="art-gallery\Vertex.h" />
     <ClInclude Include="Models\Corridor.h" />
     <ClInclude Include="Models\Corridor2.h" />

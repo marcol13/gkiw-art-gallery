@@ -14,10 +14,6 @@
 #include "lodepng.h"
 #include "shaderprogram.h"
 #include "Model.h"
-#include "Models/myTeapot.h"
-#include "Models/Corridor.h"
-#include "Models/Venus.h"
-#include "Models/Corridor2.h"
 
 float temp_x = 0;
 float temp_y = 0;
@@ -47,6 +43,9 @@ float delta_time = 0.0f;
 float aspectRatio = 1;
 
 ShaderProgram* sp;
+Model* korytarz;
+Model* venus;
+Model* lawka;
 
 
 //Odkomentuj, żeby rysować czajnik
@@ -56,7 +55,7 @@ ShaderProgram* sp;
 //float* colors = myCorridor2Colors;
 //int vertexCount = myCorridor2VertexCount;
 
-Model* korytarz = new Model("Skeleton");
+
 
 GLuint tex0;
 GLuint tex1;
@@ -105,28 +104,28 @@ void windowResizeCallback(GLFWwindow* window, int width, int height) {
 }
 
 
-GLuint readTexture(const char* filename) {
-	GLuint tex;
-	glActiveTexture(GL_TEXTURE0);
-
-	//Wczytanie do pamięci komputera
-	std::vector<unsigned char> image;   //Alokuj wektor do wczytania obrazka
-	unsigned width, height;   //Zmienne do których wczytamy wymiary obrazka
-	//Wczytaj obrazek
-	unsigned error = lodepng::decode(image, width, height, filename);
-
-	//Import do pamięci karty graficznej
-	glGenTextures(1, &tex); //Zainicjuj jeden uchwyt
-	glBindTexture(GL_TEXTURE_2D, tex); //Uaktywnij uchwyt
-	//Wczytaj obrazek do pamięci KG skojarzonej z uchwytem
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0,
-		GL_RGBA, GL_UNSIGNED_BYTE, (unsigned char*)image.data());
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	return tex;
-}
+//GLuint readTexture(const char* filename) {
+//	GLuint tex;
+//	glActiveTexture(GL_TEXTURE0);
+//
+//	//Wczytanie do pamięci komputera
+//	std::vector<unsigned char> image;   //Alokuj wektor do wczytania obrazka
+//	unsigned width, height;   //Zmienne do których wczytamy wymiary obrazka
+//	//Wczytaj obrazek
+//	unsigned error = lodepng::decode(image, width, height, filename);
+//
+//	//Import do pamięci karty graficznej
+//	glGenTextures(1, &tex); //Zainicjuj jeden uchwyt
+//	glBindTexture(GL_TEXTURE_2D, tex); //Uaktywnij uchwyt
+//	//Wczytaj obrazek do pamięci KG skojarzonej z uchwytem
+//	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0,
+//		GL_RGBA, GL_UNSIGNED_BYTE, (unsigned char*)image.data());
+//
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//
+//	return tex;
+//}
 
 
 //Procedura inicjująca
@@ -141,11 +140,19 @@ void initOpenGLProgram(GLFWwindow* window) {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
-	sp = new ShaderProgram("Shaders/v_simplest.glsl", NULL, "Shaders/f_simplest.glsl");
-	tex0 = readTexture("Textures/metal.png");
-	tex1 = readTexture("Textures/sky.png");
+	/*sp = new ShaderProgram("Shaders/v_simplest.glsl", NULL, "Shaders/f_simplest.glsl");*/
+	/*tex0 = readTexture("Textures/metal.png");
+	tex1 = readTexture("Textures/sky.png");*/
 
 	aspectRatio = 1920.0f / 1080.0f;
+
+	korytarz = new Model("Skeleton", "painted_plaster_017", "simplest");
+	/*korytarz->scale(glm::vec3(0.5, 0.5, 0.5));
+	korytarz->translate(glm::vec3(-5, 3, -2));
+	korytarz->rotate(80.0f * PI / 180.0f, glm::vec3(1,1,1));*/
+
+	venus = new Model("Venus", "bricks066", "simplest");
+	venus->translate(glm::vec3(-5, 3, -2));
 }
 
 
@@ -167,41 +174,43 @@ void drawScene(GLFWwindow* window) {
 	//************Tutaj umieszczaj kod rysujący obraz******************l
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glm::mat4 M = glm::mat4(1.0f);
-	M = glm::rotate(M, 90.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	/*glm::mat4 M = glm::mat4(1.0f);
+	M = glm::rotate(M, 90.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));*/
 
-	sp->use();//Aktywacja programu cieniującego
+	korytarz->draw();
+	venus->draw();
+	//sp->use();//Aktywacja programu cieniującego
 	//Przeslij parametry programu cieniującego do karty graficznej
-	glUniformMatrix4fv(sp->u("P"), 1, false, glm::value_ptr(P));
-	glUniformMatrix4fv(sp->u("V"), 1, false, glm::value_ptr(Camera::instance().getMatrix()));
-	glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
+	//glUniformMatrix4fv(sp->u("P"), 1, false, glm::value_ptr(P));
+	//glUniformMatrix4fv(sp->u("V"), 1, false, glm::value_ptr(Camera::instance().getMatrix()));
+	//glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
 
-	glEnableVertexAttribArray(sp->a("vertex"));  //Włącz przesyłanie danych do atrybutu vertex
-	glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, korytarz->vertices.get()); //Wskaż tablicę z danymi dla atrybutu vertex
+	//glEnableVertexAttribArray(sp->a("vertex"));  //Włącz przesyłanie danych do atrybutu vertex
+	//glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, korytarz->vertices.get()); //Wskaż tablicę z danymi dla atrybutu vertex
 
-	glEnableVertexAttribArray(sp->a("color"));  //Włącz przesyłanie danych do atrybutu color
-	glVertexAttribPointer(sp->a("color"), 4, GL_FLOAT, false, 0, korytarz->colors.get()); //Wskaż tablicę z danymi dla atrybutu color
+	//glEnableVertexAttribArray(sp->a("color"));  //Włącz przesyłanie danych do atrybutu color
+	//glVertexAttribPointer(sp->a("color"), 4, GL_FLOAT, false, 0, korytarz->colors.get()); //Wskaż tablicę z danymi dla atrybutu color
 
-	glEnableVertexAttribArray(sp->a("normal"));  //Włącz przesyłanie danych do atrybutu normal
-	glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, korytarz->vertex_normals.get()); //Wskaż tablicę z danymi dla atrybutu normal
+	//glEnableVertexAttribArray(sp->a("normal"));  //Włącz przesyłanie danych do atrybutu normal
+	//glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, korytarz->vertex_normals.get()); //Wskaż tablicę z danymi dla atrybutu normal
 
-	glEnableVertexAttribArray(sp->a("texCoord0"));  //Włącz przesyłanie danych do atrybutu texCoord
-	glVertexAttribPointer(sp->a("texCoord0"), 2, GL_FLOAT, false, 0, korytarz->textures.get()); //Wskaż tablicę z danymi dla atrybutu texCoord
+	//glEnableVertexAttribArray(sp->a("texCoord0"));  //Włącz przesyłanie danych do atrybutu texCoord
+	//glVertexAttribPointer(sp->a("texCoord0"), 2, GL_FLOAT, false, 0, korytarz->textures.get()); //Wskaż tablicę z danymi dla atrybutu texCoord
 
-	glUniform1i(sp->u("textureMap0"), 0);
+	/*glUniform1i(sp->u("textureMap0"), 0);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, tex0);
 
 	glUniform1i(sp->u("textureMap1"), 1);
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, tex1);
+	glBindTexture(GL_TEXTURE_2D, tex1);*/
 
-	glDrawArrays(GL_TRIANGLES, 0, korytarz->vertexCount); //Narysuj obiekt
+	//glDrawArrays(GL_TRIANGLES, 0, korytarz->vertexCount); //Narysuj obiekt
 
-	glDisableVertexAttribArray(sp->a("vertex"));  //Wyłącz przesyłanie danych do atrybutu vertex
-	glDisableVertexAttribArray(sp->a("color"));  //Wyłącz przesyłanie danych do atrybutu color
-	glDisableVertexAttribArray(sp->a("normal"));  //Wyłącz przesyłanie danych do atrybutu normal
-	glDisableVertexAttribArray(sp->a("texCoord0"));  //Wyłącz przesyłanie danych do atrybutu texCoord0
+	//glDisableVertexAttribArray(sp->a("vertex"));  //Wyłącz przesyłanie danych do atrybutu vertex
+	//glDisableVertexAttribArray(sp->a("color"));  //Wyłącz przesyłanie danych do atrybutu color
+	//glDisableVertexAttribArray(sp->a("normal"));  //Wyłącz przesyłanie danych do atrybutu normal
+	//glDisableVertexAttribArray(sp->a("texCoord0"));  //Wyłącz przesyłanie danych do atrybutu texCoord0
 
 	glfwSwapBuffers(window); //Przerzuć tylny bufor na przedni
 }

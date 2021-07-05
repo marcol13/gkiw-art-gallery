@@ -78,9 +78,12 @@ GLuint ShaderProgram::loadShader(GLenum shaderType,const char* fileName) {
 }
 
 ShaderProgram::ShaderProgram(const char* vertexShaderFile,const char* geometryShaderFile,const char* fragmentShaderFile) {
+	std::string vertexPath = "Shaders/v_" + (std::string)vertexShaderFile + ".glsl";
+	//std::string geometryPath = "Shaders/g_" + (std::string)geometryShaderFile + ".glsl";
+	std::string fragmentPath = "Shaders/f_" + (std::string)fragmentShaderFile + ".glsl";
 	//Wczytaj vertex shader
 	printf("Loading vertex shader...\n");
-	vertexShader=loadShader(GL_VERTEX_SHADER,vertexShaderFile);
+	vertexShader=loadShader(GL_VERTEX_SHADER,vertexPath.c_str());
 
 	//Wczytaj geometry shader
 	if (geometryShaderFile!=NULL) {
@@ -92,7 +95,7 @@ ShaderProgram::ShaderProgram(const char* vertexShaderFile,const char* geometrySh
 
 	//Wczytaj fragment shader
 	printf("Loading fragment shader...\n");
-	fragmentShader=loadShader(GL_FRAGMENT_SHADER,fragmentShaderFile);
+	fragmentShader=loadShader(GL_FRAGMENT_SHADER,fragmentPath.c_str());
 
 	//Wygeneruj uchwyt programu cieniującego
 	shaderProgram=glCreateProgram();
