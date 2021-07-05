@@ -12,14 +12,10 @@ in vec2 texCoord0; //Atrybut do przekazania współrzędnych teksturowania
 
 
 //Zmienne interpolowane
-out vec4 ic;
 out vec2 iTexCoord0; //Zmienna do interpolacji współrzędnych teksturowania
 
 void main(void) {
     iTexCoord0=texCoord0; //Przepisanie danych z atrybutu do zmiennej interpolowanej
-    float d = distance(V*M*vertex, V*M*vec4(0, 0, 20, 1));
-    d = 1 - (d - 2)/40;
-    ic = vec4(color.rgb*d, color.a);
     
     gl_Position=P*V*M*vertex;
 }

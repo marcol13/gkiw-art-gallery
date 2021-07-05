@@ -2,7 +2,7 @@
 #include "constants.h"
 #include <glm/gtc/matrix_transform.hpp>
 
-Camera::Camera() :position(0, 0, -2.5f), center(0, 0, 0), noseVector(0, 1.0f, 0), mouse_angle(PI / 2, 0) {
+Camera::Camera() :position(0, 2, 0), center(0, 0, 0), noseVector(0, 1.0f, 0), mouse_angle(PI / 2, 0) {
 	return;
 }
 
