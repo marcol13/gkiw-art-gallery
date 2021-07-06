@@ -83,6 +83,7 @@ static std::vector<Vertex> loadOBJ(std::string file_name) {
 		if (lineType == "vt")
 		{
 			loadVector(texcoords, buf);
+			texcoords[texcoords.size() - 1].y = -texcoords[texcoords.size() - 1].y;
 		}
 		if (lineType == "vn")
 		{

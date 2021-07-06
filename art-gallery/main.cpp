@@ -49,6 +49,13 @@ Model* Dome1;
 Model* Dome2;
 Model* venus;
 Model* swiatlo;
+Model* pedestal_venus;
+Model* pedestal_venus2;
+Model* pedestal_nature1;
+Model* pedestal_nature2;
+Model* pedestal_nature3;
+Model* pedestal_nature4;
+//Model* big_frame1;
 
 
 //Odkomentuj, żeby rysować czajnik
@@ -82,13 +89,13 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (action == GLFW_PRESS) {
 		if (key == GLFW_KEY_A)
-			temp_x += 2;
+			temp_x += 10;
 		if (key == GLFW_KEY_D)
-			temp_x -= 2;
+			temp_x -= 10;
 		if (key == GLFW_KEY_W)
-			temp_z += 2;
+			temp_z += 10;
 		if (key == GLFW_KEY_S)
-			temp_z -= 2;
+			temp_z -= 10;
 		if (key == GLFW_KEY_ESCAPE)
 			exit(0);
 	}
@@ -129,8 +136,48 @@ void initOpenGLProgram(GLFWwindow* window) {
 	HallThor = new Model("HallThor", "painted_plaster_017", "simplest");
 	Dome1 = new Model("Dome1", "painted_plaster_017", "simplest");
 	Dome2 = new Model("Dome2", "painted_plaster_017", "simplest");
-	venus = new Model("Venus", "bricks066", "simplest");
-	venus->translate(glm::vec3(0, 0, 0));
+
+	venus = new Model("Venus", "Venus", "simplest");
+	venus->translate(glm::vec3(-8, 2.9, -9));
+	venus->scale(glm::vec3(1.7, 1.7, 1.7));
+
+	pedestal_venus = new Model("Pedestal2", "Marble019", "simplest");
+	pedestal_venus->scale(glm::vec3(0.3, 0.25, 0.3));
+	pedestal_venus->translate(glm::vec3(-26, 5, -30));
+
+	pedestal_venus2 = new Model("Pedestal2", "Marble019", "simplest");
+	pedestal_venus2->scale(glm::vec3(0.3, 0.25, 0.3));
+	pedestal_venus2->translate(glm::vec3(-26, 5, 240));
+
+	pedestal_nature1 = new Model("Pedestal3", "Marble019", "simplest");
+	pedestal_nature1->translate(glm::vec3(3, 1.5, 3));
+	pedestal_nature1->scale(glm::vec3(2.5, 2.5, 2.5));
+	pedestal_nature1->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	pedestal_nature1->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+
+	pedestal_nature2 = new Model("Pedestal3", "Marble019", "simplest");
+	pedestal_nature2->translate(glm::vec3(3, 1.5, -19));
+	pedestal_nature2->scale(glm::vec3(2.5, 2.5, 2.5));
+	pedestal_nature2->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	pedestal_nature2->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+
+	pedestal_nature3 = new Model("Pedestal3", "Marble019", "simplest");
+	pedestal_nature3->translate(glm::vec3(-18, 1.5, 3));
+	pedestal_nature3->scale(glm::vec3(2.5, 2.5, 2.5));
+	pedestal_nature3->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	pedestal_nature3->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+
+	pedestal_nature4 = new Model("Pedestal3", "Marble019", "simplest");
+	pedestal_nature4->translate(glm::vec3(-18, 1.5, -19));
+	pedestal_nature4->scale(glm::vec3(2.5, 2.5, 2.5));
+	pedestal_nature4->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	pedestal_nature4->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+
+	/*big_frame1 = new Model("BigFrame", "Metal007", "simplest");
+	big_frame1->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	big_frame1->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+	big_frame1->scale(glm::vec3(30,13,13));*/
+
 	
 	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
 	swiatlo->translate(glm::vec3(-5, 5, 25));
@@ -159,8 +206,17 @@ void drawScene(GLFWwindow* window) {
 	HallThor->draw();
 	Dome1->draw();
 	Dome2->draw();
-	//venus->draw();
+	venus->draw();
+	pedestal_venus->draw();
+	pedestal_venus2->draw();
+	pedestal_nature1->draw();
+	pedestal_nature2->draw();
+	pedestal_nature3->draw();
+	pedestal_nature4->draw();
+	/*big_frame1->draw();*/
+
 	swiatlo->draw();
+
 
 
 	glfwSwapBuffers(window); //Przerzuć tylny bufor na przedni
