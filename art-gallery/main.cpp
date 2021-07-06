@@ -43,9 +43,12 @@ float delta_time = 0.0f;
 float aspectRatio = 1;
 
 ShaderProgram* sp;
-Model* korytarz;
+Model* EddieHall;
+Model* HallThor;
+Model* Dome1;
+Model* Dome2;
 Model* venus;
-Model* lawka;
+Model* swiatlo;
 
 
 //Odkomentuj, żeby rysować czajnik
@@ -104,28 +107,7 @@ void windowResizeCallback(GLFWwindow* window, int width, int height) {
 }
 
 
-//GLuint readTexture(const char* filename) {
-//	GLuint tex;
-//	glActiveTexture(GL_TEXTURE0);
-//
-//	//Wczytanie do pamięci komputera
-//	std::vector<unsigned char> image;   //Alokuj wektor do wczytania obrazka
-//	unsigned width, height;   //Zmienne do których wczytamy wymiary obrazka
-//	//Wczytaj obrazek
-//	unsigned error = lodepng::decode(image, width, height, filename);
-//
-//	//Import do pamięci karty graficznej
-//	glGenTextures(1, &tex); //Zainicjuj jeden uchwyt
-//	glBindTexture(GL_TEXTURE_2D, tex); //Uaktywnij uchwyt
-//	//Wczytaj obrazek do pamięci KG skojarzonej z uchwytem
-//	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0,
-//		GL_RGBA, GL_UNSIGNED_BYTE, (unsigned char*)image.data());
-//
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//
-//	return tex;
-//}
+
 
 
 //Procedura inicjująca
@@ -140,19 +122,18 @@ void initOpenGLProgram(GLFWwindow* window) {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
-	/*sp = new ShaderProgram("Shaders/v_simplest.glsl", NULL, "Shaders/f_simplest.glsl");*/
-	/*tex0 = readTexture("Textures/metal.png");
-	tex1 = readTexture("Textures/sky.png");*/
 
 	aspectRatio = 1920.0f / 1080.0f;
 
-	korytarz = new Model("Skeleton", "painted_plaster_017", "simplest");
-	/*korytarz->scale(glm::vec3(0.5, 0.5, 0.5));
-	korytarz->translate(glm::vec3(-5, 3, -2));
-	korytarz->rotate(80.0f * PI / 180.0f, glm::vec3(1,1,1));*/
-
+	EddieHall = new Model("EddieHall", "painted_plaster_017", "simplest");
+	HallThor = new Model("HallThor", "painted_plaster_017", "simplest");
+	Dome1 = new Model("Dome1", "painted_plaster_017", "simplest");
+	Dome2 = new Model("Dome2", "painted_plaster_017", "simplest");
 	venus = new Model("Venus", "bricks066", "simplest");
-	venus->translate(glm::vec3(-5, 3, -2));
+	venus->translate(glm::vec3(0, 0, 0));
+	
+	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatlo->translate(glm::vec3(-5, 5, 25));
 }
 
 
@@ -174,43 +155,13 @@ void drawScene(GLFWwindow* window) {
 	//************Tutaj umieszczaj kod rysujący obraz******************l
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	/*glm::mat4 M = glm::mat4(1.0f);
-	M = glm::rotate(M, 90.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));*/
+	EddieHall->draw();
+	HallThor->draw();
+	Dome1->draw();
+	Dome2->draw();
+	//venus->draw();
+	swiatlo->draw();
 
-	korytarz->draw();
-	venus->draw();
-	//sp->use();//Aktywacja programu cieniującego
-	//Przeslij parametry programu cieniującego do karty graficznej
-	//glUniformMatrix4fv(sp->u("P"), 1, false, glm::value_ptr(P));
-	//glUniformMatrix4fv(sp->u("V"), 1, false, glm::value_ptr(Camera::instance().getMatrix()));
-	//glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(M));
-
-	//glEnableVertexAttribArray(sp->a("vertex"));  //Włącz przesyłanie danych do atrybutu vertex
-	//glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, korytarz->vertices.get()); //Wskaż tablicę z danymi dla atrybutu vertex
-
-	//glEnableVertexAttribArray(sp->a("color"));  //Włącz przesyłanie danych do atrybutu color
-	//glVertexAttribPointer(sp->a("color"), 4, GL_FLOAT, false, 0, korytarz->colors.get()); //Wskaż tablicę z danymi dla atrybutu color
-
-	//glEnableVertexAttribArray(sp->a("normal"));  //Włącz przesyłanie danych do atrybutu normal
-	//glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, korytarz->vertex_normals.get()); //Wskaż tablicę z danymi dla atrybutu normal
-
-	//glEnableVertexAttribArray(sp->a("texCoord0"));  //Włącz przesyłanie danych do atrybutu texCoord
-	//glVertexAttribPointer(sp->a("texCoord0"), 2, GL_FLOAT, false, 0, korytarz->textures.get()); //Wskaż tablicę z danymi dla atrybutu texCoord
-
-	/*glUniform1i(sp->u("textureMap0"), 0);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, tex0);
-
-	glUniform1i(sp->u("textureMap1"), 1);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, tex1);*/
-
-	//glDrawArrays(GL_TRIANGLES, 0, korytarz->vertexCount); //Narysuj obiekt
-
-	//glDisableVertexAttribArray(sp->a("vertex"));  //Wyłącz przesyłanie danych do atrybutu vertex
-	//glDisableVertexAttribArray(sp->a("color"));  //Wyłącz przesyłanie danych do atrybutu color
-	//glDisableVertexAttribArray(sp->a("normal"));  //Wyłącz przesyłanie danych do atrybutu normal
-	//glDisableVertexAttribArray(sp->a("texCoord0"));  //Wyłącz przesyłanie danych do atrybutu texCoord0
 
 	glfwSwapBuffers(window); //Przerzuć tylny bufor na przedni
 }
@@ -261,16 +212,6 @@ int main(void)
 		Camera::instance().rotate(cursor_x * delta_time, cursor_y * delta_time);
 
 
-
-		//std::cout << cursor_x * delta_time << std::endl;
-
-		/*mAngle.x += cursor_x * delta_time;
-		mAngle.y = glm::clamp(mAngle.y + cursor_y * delta_time, -PI / 2, PI / 2);*/
-
-		/*pos_x += temp_z * delta_time * cos(mAngle.x) + temp_x * sin(mAngle.x) * delta_time;
-		pos_y += temp_y * glfwGetTime();
-		pos_z += temp_z * delta_time * sin(mAngle.x) - temp_x * delta_time * cos(mAngle.x);
-		*/
 		cursor_x = 0;
 		cursor_y = 0;
 

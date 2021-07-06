@@ -67,6 +67,12 @@
     <None Include="Shaders\v_simplest.glsl">
       <Filter>Shadery</Filter>
     </None>
+    <None Include="Shaders\f_lightsource.glsl">
+      <Filter>Shadery</Filter>
+    </None>
+    <None Include="Shaders\v_lightsource.glsl">
+      <Filter>Shadery</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pliki nagłówkowe">

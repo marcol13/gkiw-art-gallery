@@ -45,7 +45,7 @@ void Model::draw()
 	glVertexAttribPointer(shader_model->a("color"), 4, GL_FLOAT, false, 0, colors.get()); //Wska¿ tablicê z danymi dla atrybutu color
 
 	glEnableVertexAttribArray(shader_model->a("normal"));  //W³¹cz przesy³anie danych do atrybutu normal
-	glVertexAttribPointer(shader_model->a("normal"), 4, GL_FLOAT, false, 0, vertex_normals.get()); //Wska¿ tablicê z danymi dla atrybutu normal
+	glVertexAttribPointer(shader_model->a("normal"), 4, GL_FLOAT, false, 0,	normals.get()); //Wska¿ tablicê z danymi dla atrybutu normal
 
 	glEnableVertexAttribArray(shader_model->a("texCoord0"));  //W³¹cz przesy³anie danych do atrybutu texCoord
 	glVertexAttribPointer(shader_model->a("texCoord0"), 2, GL_FLOAT, false, 0, textures.get()); //Wska¿ tablicê z danymi dla atrybutu texCoord

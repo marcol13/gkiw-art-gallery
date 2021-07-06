@@ -28,8 +28,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="Shaders\f_lightsource.glsl" />
     <None Include="Shaders\f_simplest.glsl" />
     <None Include="Shaders\g_simplest.glsl" />
+    <None Include="Shaders\v_lightsource.glsl" />
     <None Include="Shaders\v_simplest.glsl" />
   </ItemGroup>
   <ItemGroup>
