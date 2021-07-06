@@ -4,7 +4,6 @@
 class Camera {
 private:
 	mutable glm::mat4 V;
-	mutable glm::vec3 position;
 	mutable glm::vec3 center;
 	mutable glm::vec3 noseVector;
 	glm::vec2 mouse_angle;
@@ -13,6 +12,7 @@ private:
 	Camera();
 public:
 	static Camera& instance();
+	mutable glm::vec3 position;
 
 	void initPosition();
 	void initCenter();

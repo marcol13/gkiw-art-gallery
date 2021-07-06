@@ -57,6 +57,9 @@ Model* pedestal_nature3;
 Model* pedestal_nature4;
 //Model* big_frame1;
 
+//LIGHTING
+//glm::vec3 lightPos = glm::vec3(0.0, 5.0, 0.0);
+
 
 //Odkomentuj, żeby rysować czajnik
 //float* vertices = myCorridor2Vertices;
@@ -180,7 +183,7 @@ void initOpenGLProgram(GLFWwindow* window) {
 
 	
 	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
-	swiatlo->translate(glm::vec3(-5, 5, 25));
+	swiatlo->translate(glm::vec3(0.0, 5.0, 0.0));
 }
 
 
@@ -266,6 +269,8 @@ int main(void)
 
 		Camera::instance().move(temp_x * delta_time, temp_y * delta_time, temp_z * delta_time);
 		Camera::instance().rotate(cursor_x * delta_time, cursor_y * delta_time);
+
+		std::cout << Camera::instance().position.x << " " << Camera::instance().position.z << std::endl;
 
 
 		cursor_x = 0;

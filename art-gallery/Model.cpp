@@ -50,9 +50,18 @@ void Model::draw()
 	glEnableVertexAttribArray(shader_model->a("texCoord0"));  //W³¹cz przesy³anie danych do atrybutu texCoord
 	glVertexAttribPointer(shader_model->a("texCoord0"), 2, GL_FLOAT, false, 0, textures.get()); //Wska¿ tablicê z danymi dla atrybutu texCoord
 
+	glUniform3fv(shader_model->u("viewPos"), 1, glm::value_ptr(Camera::instance().position));
+	//glUniform3fv(shader_model->u("lightPos"), 1, glm::value_ptr(Camera::instance().position));
+	
+	//glEnableVertexAttribArray(shader_model->u("lightPos"));  //W³¹cz przesy³anie danych do atrybutu
+	//glVertexAttribPointer(shader_model->u("lightPos"), 3, GL_FLOAT, false, 0, glm::value_ptr(lightPos)); //Wska¿ tablicê z danymi dla atrybutu
+
 	tex.drawTextures(shader_model);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount); //Narysuj obiekt
+	
+	//glDisableVertexAttribArray(shader_model->u("lightPos"));  //Wy³¹cz przesy³anie danych do atrybutu 
+	
 
 	glDisableVertexAttribArray(shader_model->a("vertex"));  //Wy³¹cz przesy³anie danych do atrybutu vertex
 	glDisableVertexAttribArray(shader_model->a("color"));  //Wy³¹cz przesy³anie danych do atrybutu color
