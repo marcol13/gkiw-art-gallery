@@ -43,10 +43,26 @@ float delta_time = 0.0f;
 float aspectRatio = 1;
 
 
-Model* swiatlo;
-Model* swiatlo2;
-Model* swiatlo3;
-Model* swiatlo4;
+
+Model* swiatloThor1;
+Model* swiatloThor2;
+Model* swiatloThor3;
+Model* swiatloThor4;
+Model* swiatloEddie1;
+Model* swiatloEddie2;
+Model* swiatloEddie3;
+Model* swiatloEddie4;
+
+Model* swiatloDome1;
+Model* swiatloDome2;
+
+Model* lampaThor;
+Model* lampaEddie1;
+Model* lampaEddie2;
+Model* lampaEddie3;
+Model* lampaEddie4;
+Model* lampaDome1;
+Model* lampaDome2;
 
 Model* EddieHall;
 Model* HallThor;
@@ -439,17 +455,40 @@ void initOpenGLProgram(GLFWwindow* window) {
 	ok_sculpture->rotate(200.0f * PI / 180.0f, glm::vec3(0, 1, 0));
 	ok_sculpture->translate(glm::vec3(236, 46.8, 38.8));
 
-	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
-	swiatlo->translate(swiatlo->pointLightPositions[0]);
+	swiatloDome1 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloDome1->translate(swiatloDome1->pointLightPositions[0]);
 
-	swiatlo2 = new Model("LightsourceCube", "bricks066", "lightsource");
-	swiatlo2->translate(swiatlo2->pointLightPositions[1]);
+	swiatloThor1 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloThor1->translate(swiatloThor1->pointLightPositions[1]);
+	swiatloThor2 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloThor2->translate(swiatloThor2->pointLightPositions[2]);
+	swiatloThor3 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloThor3->translate(swiatloThor3->pointLightPositions[3]);
+	swiatloThor4 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloThor4->translate(swiatloThor4->pointLightPositions[4]);
 
-	swiatlo3 = new Model("LightsourceCube", "bricks066", "lightsource");
-	swiatlo3->translate(swiatlo3->pointLightPositions[2]);
+	swiatloEddie1 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloEddie1->translate(swiatloEddie1->pointLightPositions[5]);
+	swiatloEddie2 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloEddie2->translate(swiatloEddie2->pointLightPositions[6]);
+	swiatloEddie3 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloEddie3->translate(swiatloEddie3->pointLightPositions[7]);
+	swiatloEddie4 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloEddie4->translate(swiatloEddie4->pointLightPositions[8]);
 
-	swiatlo4 = new Model("LightsourceCube", "bricks066", "lightsource");
-	swiatlo4->translate(swiatlo4->pointLightPositions[3]);
+	swiatloDome2 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatloDome2->translate(swiatloDome2->pointLightPositions[9]);
+
+
+	lampaThor = new Model("LampThor", "Lamps", "simplest");
+
+	lampaEddie1 = new Model("EddieLamp1", "Lamps", "simplest");
+	lampaEddie2 = new Model("EddieLamp2", "Lamps", "simplest");
+	lampaEddie3 = new Model("EddieLamp3", "Lamps", "simplest");
+	lampaEddie4 = new Model("EddieLamp4", "Lamps", "simplest");
+
+	lampaDome1 = new Model("Dome1Lamp", "Lamps", "simplest");
+	lampaDome2 = new Model("Dome2Lamp", "Lamps", "simplest");
 }
 
 
@@ -532,10 +571,24 @@ void drawScene(GLFWwindow* window) {
 	napoleon->draw();
 	ok_sculpture->draw();
 
-	swiatlo->draw();
-	swiatlo2->draw();
-	swiatlo3->draw();
-	swiatlo4->draw();
+	swiatloDome1->draw();
+	swiatloThor1->draw();
+	swiatloThor2->draw();
+	swiatloThor3->draw();
+	swiatloThor4->draw();
+	swiatloEddie1->draw();
+	swiatloEddie2->draw();
+	swiatloEddie3->draw();
+	swiatloEddie4->draw();
+	swiatloDome2->draw();
+
+	lampaThor->draw();
+	lampaEddie1->draw();
+	lampaEddie2->draw();
+	lampaEddie3->draw();
+	lampaEddie4->draw();
+	lampaDome1->draw();
+	lampaDome2->draw();
 
 
 

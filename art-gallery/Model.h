@@ -24,11 +24,17 @@ protected:
 	//GLuint tex;
 
 public:
-	mutable glm::vec3 pointLightPositions[4] = {
-	   glm::vec3(35.0f, 15.0f, -10.0f),
-	   glm::vec3(-7.0f, 5.0f, 8.0f),
-	   glm::vec3(-5.0f,  5.0f, 30.0f),
-	   glm::vec3(-10.0f,  7.0f, 60.0f)
+	mutable glm::vec3 pointLightPositions[10] = {
+	   glm::vec3(-7.8f, 15.5f, -8.56f),
+	   glm::vec3(-7.7f, 9.8f, 17.9f),
+	   glm::vec3(-7.7f, 9.8f, 26.9f),
+	   glm::vec3(-7.7f, 9.8f, 36.45f),
+	   glm::vec3(-7.7f, 9.8f, 45.65f),
+	   glm::vec3(33.4f, 15.5f, 17.25f),
+	   glm::vec3(33.4f, 15.5f, 1.20),
+	   glm::vec3(33.4f, 15.5f, -17.92),
+	   glm::vec3(33.4f, 15.5f, -35),
+	   glm::vec3(-7.8f, 15.5f, 71.7f)
 	};
 	std::shared_ptr <float> vertices;
 	std::shared_ptr <float> normals;

@@ -52,38 +52,87 @@ void Model::draw()
 
 	glUniform3fv(shader_model->u("viewPos"), 1, glm::value_ptr(Camera::instance().position));
 	
-
+	// Dome 1
 	glUniform3fv(shader_model->u("pointLights[0].position"), 1, glm::value_ptr(pointLightPositions[0]));
-	glUniform3fv(shader_model->u("pointLights[0].ambient"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
-	glUniform3fv(shader_model->u("pointLights[0].diffuse"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
-	glUniform3fv(shader_model->u("pointLights[0].specular"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[0].ambient"), 1, glm::value_ptr(glm::vec3(0.8f, 0.8f, 0.8f)));
+	glUniform3fv(shader_model->u("pointLights[0].diffuse"), 1, glm::value_ptr(glm::vec3(0.8f, 0.8f, 0.8f)));
+	glUniform3fv(shader_model->u("pointLights[0].specular"), 1, glm::value_ptr(glm::vec3(0.8f, 0.8f, 0.8f)));
 	glUniform1f(shader_model->u("pointLights[0].constant"), 1.0f);
 	glUniform1f(shader_model->u("pointLights[0].linear"), 0.09f);
 	glUniform1f(shader_model->u("pointLights[0].quadratic"), 0.032f);
-
+	//Thor 1
 	glUniform3fv(shader_model->u("pointLights[1].position"), 1, glm::value_ptr(pointLightPositions[1]));
-	glUniform3fv(shader_model->u("pointLights[1].ambient"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
-	glUniform3fv(shader_model->u("pointLights[1].diffuse"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
-	glUniform3fv(shader_model->u("pointLights[1].specular"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[1].ambient"), 1, glm::value_ptr(glm::vec3(0.6f, 0.6f, 0.6f)));
+	glUniform3fv(shader_model->u("pointLights[1].diffuse"), 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+	glUniform3fv(shader_model->u("pointLights[1].specular"), 1, glm::value_ptr(glm::vec3(0.7f, 0.7f, 0.7f)));
 	glUniform1f(shader_model->u("pointLights[1].constant"), 1.0f);
 	glUniform1f(shader_model->u("pointLights[1].linear"), 0.09f);
 	glUniform1f(shader_model->u("pointLights[1].quadratic"), 0.032f);
-
+	//Thor 2
 	glUniform3fv(shader_model->u("pointLights[2].position"), 1, glm::value_ptr(pointLightPositions[2]));
-	glUniform3fv(shader_model->u("pointLights[2].ambient"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
-	glUniform3fv(shader_model->u("pointLights[2].diffuse"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
-	glUniform3fv(shader_model->u("pointLights[2].specular"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[2].ambient"), 1, glm::value_ptr(glm::vec3(0.6f, 0.6f, 0.6f)));
+	glUniform3fv(shader_model->u("pointLights[2].diffuse"), 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+	glUniform3fv(shader_model->u("pointLights[2].specular"), 1, glm::value_ptr(glm::vec3(0.7f, 0.7f, 0.7f)));
 	glUniform1f(shader_model->u("pointLights[2].constant"), 1.0f);
 	glUniform1f(shader_model->u("pointLights[2].linear"), 0.09f);
 	glUniform1f(shader_model->u("pointLights[2].quadratic"), 0.032f);
-
+	//Thor 3
 	glUniform3fv(shader_model->u("pointLights[3].position"), 1, glm::value_ptr(pointLightPositions[3]));
-	glUniform3fv(shader_model->u("pointLights[3].ambient"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
-	glUniform3fv(shader_model->u("pointLights[3].diffuse"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
-	glUniform3fv(shader_model->u("pointLights[3].specular"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[3].ambient"), 1, glm::value_ptr(glm::vec3(0.6f, 0.6f, 0.6f)));
+	glUniform3fv(shader_model->u("pointLights[3].diffuse"), 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+	glUniform3fv(shader_model->u("pointLights[3].specular"), 1, glm::value_ptr(glm::vec3(0.7f, 0.7f, 0.7f)));
 	glUniform1f(shader_model->u("pointLights[3].constant"), 1.0f);
 	glUniform1f(shader_model->u("pointLights[3].linear"), 0.09f);
 	glUniform1f(shader_model->u("pointLights[3].quadratic"), 0.032f);
+	//Thor 4
+	glUniform3fv(shader_model->u("pointLights[4].position"), 1, glm::value_ptr(pointLightPositions[4]));
+	glUniform3fv(shader_model->u("pointLights[4].ambient"), 1, glm::value_ptr(glm::vec3(0.6f, 0.6f, 0.6f)));
+	glUniform3fv(shader_model->u("pointLights[4].diffuse"), 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+	glUniform3fv(shader_model->u("pointLights[4].specular"), 1, glm::value_ptr(glm::vec3(0.7f, 0.7f, 0.7f)));
+	glUniform1f(shader_model->u("pointLights[4].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[4].linear"), 0.09f);
+	glUniform1f(shader_model->u("pointLights[4].quadratic"), 0.032f);
+	//Eddie 1
+	glUniform3fv(shader_model->u("pointLights[5].position"), 1, glm::value_ptr(pointLightPositions[5]));
+	glUniform3fv(shader_model->u("pointLights[5].ambient"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[5].diffuse"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[5].specular"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform1f(shader_model->u("pointLights[5].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[5].linear"), 0.0009f);
+	glUniform1f(shader_model->u("pointLights[5].quadratic"), 0.032f);
+	//Eddie 2
+	glUniform3fv(shader_model->u("pointLights[6].position"), 1, glm::value_ptr(pointLightPositions[6]));
+	glUniform3fv(shader_model->u("pointLights[6].ambient"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[6].diffuse"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[6].specular"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform1f(shader_model->u("pointLights[6].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[6].linear"), 0.0009f);
+	glUniform1f(shader_model->u("pointLights[6].quadratic"), 0.032f);
+	//Eddie 3
+	glUniform3fv(shader_model->u("pointLights[7].position"), 1, glm::value_ptr(pointLightPositions[7]));
+	glUniform3fv(shader_model->u("pointLights[7].ambient"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[7].diffuse"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[7].specular"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform1f(shader_model->u("pointLights[7].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[7].linear"), 0.0009f);
+	glUniform1f(shader_model->u("pointLights[7].quadratic"), 0.032f);
+	//Eddie 4
+	glUniform3fv(shader_model->u("pointLights[8].position"), 1, glm::value_ptr(pointLightPositions[8]));
+	glUniform3fv(shader_model->u("pointLights[8].ambient"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[8].diffuse"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[8].specular"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform1f(shader_model->u("pointLights[8].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[8].linear"), 0.0009f);
+	glUniform1f(shader_model->u("pointLights[8].quadratic"), 0.032f);	
+	
+	// Dome 2
+	glUniform3fv(shader_model->u("pointLights[9].position"), 1, glm::value_ptr(pointLightPositions[9]));
+	glUniform3fv(shader_model->u("pointLights[9].ambient"), 1, glm::value_ptr(glm::vec3(1.2f, 1.2f, 1.2f)));
+	glUniform3fv(shader_model->u("pointLights[9].diffuse"), 1, glm::value_ptr(glm::vec3(1.2f, 1.2f, 1.2f)));
+	glUniform3fv(shader_model->u("pointLights[9].specular"), 1, glm::value_ptr(glm::vec3(1.2f, 1.2f, 1.2f)));
+	glUniform1f(shader_model->u("pointLights[9].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[9].linear"), 0.09f);
+	glUniform1f(shader_model->u("pointLights[9].quadratic"), 0.032f);
 
 	tex.drawTextures(shader_model);
 
