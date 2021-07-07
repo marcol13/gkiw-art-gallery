@@ -42,13 +42,17 @@ glm::vec3 pos_noseVector = glm::vec3(0.0f, 1.0f, 0.0f);
 float delta_time = 0.0f;
 float aspectRatio = 1;
 
-ShaderProgram* sp;
+
+Model* swiatlo;
+Model* swiatlo2;
+Model* swiatlo3;
+Model* swiatlo4;
+
 Model* EddieHall;
 Model* HallThor;
 Model* Dome1;
 Model* Dome2;
 Model* venus;
-Model* swiatlo;
 Model* pedestal_venus;
 Model* pedestal_venus2;
 Model* pedestal_venus3;
@@ -90,17 +94,6 @@ Model* canvas7_noc;
 Model* canvas8_noc;
 Model* canvas9_noc;
 Model* canvas10_noc;
-
-//LIGHTING
-//glm::vec3 lightPos = glm::vec3(0.0, 5.0, 0.0);
-
-
-//Odkomentuj, żeby rysować czajnik
-//float* vertices = myCorridor2Vertices;
-//float* normals = myCorridor2VertexNormals;
-//float* texCoords = myCorridor2TexCoords;
-//float* colors = myCorridor2Colors;
-//int vertexCount = myCorridor2VertexCount;
 
 
 
@@ -378,7 +371,16 @@ void initOpenGLProgram(GLFWwindow* window) {
 	mask->scale(glm::vec3(0.8, 0.8, 0.8));
 
 	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
-	swiatlo->translate(glm::vec3(0.0, 5.0, 0.0));
+	swiatlo->translate(swiatlo->pointLightPositions[0]);
+
+	swiatlo2 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatlo2->translate(swiatlo2->pointLightPositions[1]);
+
+	swiatlo3 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatlo3->translate(swiatlo3->pointLightPositions[2]);
+
+	swiatlo4 = new Model("LightsourceCube", "bricks066", "lightsource");
+	swiatlo4->translate(swiatlo4->pointLightPositions[3]);
 }
 
 
@@ -386,7 +388,6 @@ void initOpenGLProgram(GLFWwindow* window) {
 void freeOpenGLProgram(GLFWwindow* window) {
 	//************Tutaj umieszczaj kod, który należy wykonać po zakończeniu pętli głównej************
 
-	delete sp;
 }
 
 
@@ -449,6 +450,9 @@ void drawScene(GLFWwindow* window) {
 	mask->draw();
 
 	swiatlo->draw();
+	swiatlo2->draw();
+	swiatlo3->draw();
+	swiatlo4->draw();
 
 
 

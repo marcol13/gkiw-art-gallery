@@ -51,17 +51,45 @@ void Model::draw()
 	glVertexAttribPointer(shader_model->a("texCoord0"), 2, GL_FLOAT, false, 0, textures.get()); //Wska¿ tablicê z danymi dla atrybutu texCoord
 
 	glUniform3fv(shader_model->u("viewPos"), 1, glm::value_ptr(Camera::instance().position));
-	//glUniform3fv(shader_model->u("lightPos"), 1, glm::value_ptr(Camera::instance().position));
 	
-	//glEnableVertexAttribArray(shader_model->u("lightPos"));  //W³¹cz przesy³anie danych do atrybutu
-	//glVertexAttribPointer(shader_model->u("lightPos"), 3, GL_FLOAT, false, 0, glm::value_ptr(lightPos)); //Wska¿ tablicê z danymi dla atrybutu
+
+	glUniform3fv(shader_model->u("pointLights[0].position"), 1, glm::value_ptr(pointLightPositions[0]));
+	glUniform3fv(shader_model->u("pointLights[0].ambient"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[0].diffuse"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform3fv(shader_model->u("pointLights[0].specular"), 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+	glUniform1f(shader_model->u("pointLights[0].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[0].linear"), 0.09f);
+	glUniform1f(shader_model->u("pointLights[0].quadratic"), 0.032f);
+
+	glUniform3fv(shader_model->u("pointLights[1].position"), 1, glm::value_ptr(pointLightPositions[1]));
+	glUniform3fv(shader_model->u("pointLights[1].ambient"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[1].diffuse"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[1].specular"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform1f(shader_model->u("pointLights[1].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[1].linear"), 0.09f);
+	glUniform1f(shader_model->u("pointLights[1].quadratic"), 0.032f);
+
+	glUniform3fv(shader_model->u("pointLights[2].position"), 1, glm::value_ptr(pointLightPositions[2]));
+	glUniform3fv(shader_model->u("pointLights[2].ambient"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[2].diffuse"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[2].specular"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform1f(shader_model->u("pointLights[2].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[2].linear"), 0.09f);
+	glUniform1f(shader_model->u("pointLights[2].quadratic"), 0.032f);
+
+	glUniform3fv(shader_model->u("pointLights[3].position"), 1, glm::value_ptr(pointLightPositions[3]));
+	glUniform3fv(shader_model->u("pointLights[3].ambient"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[3].diffuse"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform3fv(shader_model->u("pointLights[3].specular"), 1, glm::value_ptr(glm::vec3(0.3f, 0.3f, 0.3f)));
+	glUniform1f(shader_model->u("pointLights[3].constant"), 1.0f);
+	glUniform1f(shader_model->u("pointLights[3].linear"), 0.09f);
+	glUniform1f(shader_model->u("pointLights[3].quadratic"), 0.032f);
 
 	tex.drawTextures(shader_model);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount); //Narysuj obiekt
 	
-	//glDisableVertexAttribArray(shader_model->u("lightPos"));  //Wy³¹cz przesy³anie danych do atrybutu 
-	
+
 
 	glDisableVertexAttribArray(shader_model->a("vertex"));  //Wy³¹cz przesy³anie danych do atrybutu vertex
 	glDisableVertexAttribArray(shader_model->a("color"));  //Wy³¹cz przesy³anie danych do atrybutu color
