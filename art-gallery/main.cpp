@@ -72,6 +72,7 @@ Model* Dome2;
 Model* venus;
 Model* discobolus;
 Model* nimph;
+Model* penelope;
 
 Model* pedestal_venus;
 Model* pedestal_venus2;
@@ -125,6 +126,8 @@ Model* canvas11_noc;
 Model* canvas12_noc;
 
 Model* canvas1_lasiczka;
+Model* canvas2_lasiczka;
+Model* canvas3_lasiczka;
 
 
 
@@ -202,15 +205,20 @@ void initOpenGLProgram(GLFWwindow* window) {
 	venus->translate(glm::vec3(-8, 3.2, -9));
 	venus->scale(glm::vec3(1.7, 1.7, 1.7));
 
-	discobolus = new Model("Discobolus1", "Marble010", "simplest");
+	discobolus = new Model("Discobolus1", "Marble007", "simplest");
 	discobolus->scale(glm::vec3(0.35,0.35,0.35));
 	discobolus->translate(glm::vec3(-22,9.5,206));
 	discobolus->rotate(180.0f * PI / 180.0f, glm::vec3(0, 1, 0));
 
-	nimph = new Model("Nimph", "Marble010", "simplest");
+	nimph = new Model("Nimph", "Marble007", "simplest");
 	nimph->rotate(270.0f * PI / 180.0f, glm::vec3(0, 1, 0));
 	nimph->translate(glm::vec3( 3, 7.5, -16.2));
 	nimph->scale(glm::vec3(1.2, 1.2, 1.2));
+
+	penelope = new Model("Penelope", "Marble007", "simplest");
+	penelope->scale(glm::vec3(0.35, 0.35, 0.35));
+	penelope->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+	penelope->translate(glm::vec3(54, 9.65, 43));
 
 	pedestal_venus = new Model("Pedestal2", "Marble019", "simplest");
 	pedestal_venus->scale(glm::vec3(0.3, 0.25, 0.3));
@@ -387,25 +395,25 @@ void initOpenGLProgram(GLFWwindow* window) {
 	canvas5_noc->translate(glm::vec3(-17.8, 2.45, 5));
 	canvas5_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas6_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas6_noc = new Model("Stanczyk", "Impresja", "simplest");
 	canvas6_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas6_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas6_noc->translate(glm::vec3(-30.3, 2.45, 5));
 	canvas6_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas7_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas7_noc = new Model("Stanczyk", "TratwaMeduzy", "simplest");
 	canvas7_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas7_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas7_noc->translate(glm::vec3(-42.8, 2.45, 5));
 	canvas7_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas8_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas8_noc = new Model("Stanczyk", "Lekcja", "simplest");
 	canvas8_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas8_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas8_noc->translate(glm::vec3(-17.8, 13.3, 5));
 	canvas8_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas9_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas9_noc = new Model("Stanczyk", "Stawny", "simplest");
 	canvas9_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas9_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas9_noc->translate(glm::vec3(-30.3, 13.3, 5));
@@ -431,8 +439,19 @@ void initOpenGLProgram(GLFWwindow* window) {
 
 	canvas1_lasiczka = new Model("Dama", "DamaZLasiczka", "simplest");
 	canvas1_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
-	canvas1_lasiczka->translate(glm::vec3(-7.87, 24.3, 6.62));
+	canvas1_lasiczka->translate(glm::vec3(-7.89, 24.3, 6.62));
 	canvas1_lasiczka->scale(glm::vec3(2.02, 2.1, 2.27));
+
+	canvas2_lasiczka = new Model("Dama", "DamaZLasiczka", "simplest");
+	canvas2_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas2_lasiczka->translate(glm::vec3(-7.89, -87.5, 6.62));
+	canvas2_lasiczka->scale(glm::vec3(2.02, 2.1, 2.27));
+
+	canvas3_lasiczka = new Model("Dama", "DamaZLasiczka", "simplest");
+	canvas3_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas3_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas3_lasiczka->translate(glm::vec3(9.5, 23.55, 6.55));
+	canvas3_lasiczka->scale(glm::vec3(2.02, 2.1, 2.27));
 
 	mask = new Model("Mask", "Mask", "simplest");
 	mask->translate(glm::vec3(4.65, 2.21, 6.7));
@@ -517,6 +536,7 @@ void drawScene(GLFWwindow* window) {
 	venus->draw();
 	discobolus->draw();
 	nimph->draw();
+	penelope->draw();
 
 	pedestal_venus->draw();
 	pedestal_venus2->draw();
@@ -565,6 +585,8 @@ void drawScene(GLFWwindow* window) {
 	canvas12_noc->draw();
 
 	canvas1_lasiczka->draw();
+	canvas2_lasiczka->draw();
+	canvas3_lasiczka->draw();
 
 	mask->draw();
 	thanos->draw();
