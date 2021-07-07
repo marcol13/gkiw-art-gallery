@@ -55,7 +55,29 @@ Model* pedestal_nature1;
 Model* pedestal_nature2;
 Model* pedestal_nature3;
 Model* pedestal_nature4;
-//Model* big_frame1;
+Model* big_frame1;
+Model* floor1;
+Model* column1;
+Model* column2;
+
+Model* frame1_v1;
+Model* frame2_v1;
+Model* frame3_v1;
+Model* frame4_v1;
+Model* frame5_v1;
+Model* frame6_v1;
+Model* frame7_v1;
+Model* frame8_v1;
+Model* frame9_v1;
+Model* frame10_v1;
+
+Model* frame1_v2;
+Model* frame2_v2;
+
+Model* canvas1_stanczyk;
+Model* canvas2_karabin;
+Model* canvas3_wenus;
+Model* canvas4_bacchus;
 
 //LIGHTING
 //glm::vec3 lightPos = glm::vec3(0.0, 5.0, 0.0);
@@ -141,47 +163,140 @@ void initOpenGLProgram(GLFWwindow* window) {
 	Dome2 = new Model("Dome2", "painted_plaster_017", "simplest");
 
 	venus = new Model("Venus", "Venus", "simplest");
-	venus->translate(glm::vec3(-8, 2.9, -9));
+	venus->translate(glm::vec3(-8, 3.2, -9));
 	venus->scale(glm::vec3(1.7, 1.7, 1.7));
 
 	pedestal_venus = new Model("Pedestal2", "Marble019", "simplest");
 	pedestal_venus->scale(glm::vec3(0.3, 0.25, 0.3));
-	pedestal_venus->translate(glm::vec3(-26, 5, -30));
+	pedestal_venus->translate(glm::vec3(-26, 6.85, -30));
 
 	pedestal_venus2 = new Model("Pedestal2", "Marble019", "simplest");
 	pedestal_venus2->scale(glm::vec3(0.3, 0.25, 0.3));
-	pedestal_venus2->translate(glm::vec3(-26, 5, 240));
+	pedestal_venus2->translate(glm::vec3(-26, 6.85, 240));
 
 	pedestal_nature1 = new Model("Pedestal3", "Marble019", "simplest");
-	pedestal_nature1->translate(glm::vec3(3, 1.5, 3));
+	pedestal_nature1->translate(glm::vec3(3, 1.65, 3));
 	pedestal_nature1->scale(glm::vec3(2.5, 2.5, 2.5));
 	pedestal_nature1->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
 	pedestal_nature1->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 
 	pedestal_nature2 = new Model("Pedestal3", "Marble019", "simplest");
-	pedestal_nature2->translate(glm::vec3(3, 1.5, -19));
+	pedestal_nature2->translate(glm::vec3(3, 1.65, -19));
 	pedestal_nature2->scale(glm::vec3(2.5, 2.5, 2.5));
 	pedestal_nature2->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
 	pedestal_nature2->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 
 	pedestal_nature3 = new Model("Pedestal3", "Marble019", "simplest");
-	pedestal_nature3->translate(glm::vec3(-18, 1.5, 3));
+	pedestal_nature3->translate(glm::vec3(-18, 1.65, 3));
 	pedestal_nature3->scale(glm::vec3(2.5, 2.5, 2.5));
 	pedestal_nature3->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
 	pedestal_nature3->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 
 	pedestal_nature4 = new Model("Pedestal3", "Marble019", "simplest");
-	pedestal_nature4->translate(glm::vec3(-18, 1.5, -19));
+	pedestal_nature4->translate(glm::vec3(-18, 1.65, -19));
 	pedestal_nature4->scale(glm::vec3(2.5, 2.5, 2.5));
 	pedestal_nature4->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
 	pedestal_nature4->rotate(45.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 
-	/*big_frame1 = new Model("BigFrame", "Metal007", "simplest");
+	big_frame1 = new Model("BigFrame", "Metal007", "simplest");
 	big_frame1->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
 	big_frame1->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
-	big_frame1->scale(glm::vec3(30,13,13));*/
+	big_frame1->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	big_frame1->scale(glm::vec3(13,13,17));
+	//big_frame1->scale(glm::vec3(10, 1, 1));
+	//big_frame1->translate(glm::vec3(1.5, 1.65, 0.65));
+	big_frame1->translate(glm::vec3(1.35, 3.97, 0.5));
 
+	floor1 = new Model("Floor", "Tiles074", "simplest");
+	floor1->translate(glm::vec3(0, -1, 0));
+	floor1->scale(glm::vec3(100, 100, 100));
+
+	column1 = new Model("Column2", "DoricColumn", "simplest");
+	column1->scale(glm::vec3(0.7, 0.73, 0.7));
+	column1->translate(glm::vec3(70, -0.6, 20));
+
+	column2 = new Model("Column2", "DoricColumn", "simplest");
+	column2->scale(glm::vec3(0.7, 0.73, 0.7));
+	column2->translate(glm::vec3(70, -0.6, -45));
 	
+	frame1_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame1_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame1_v1->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+	//frame1_v1->translate(glm::vec3(-54, 20, 65));
+	frame1_v1->translate(glm::vec3(-53.9, 25, 80));
+
+	frame2_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame2_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame2_v1->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+	frame2_v1->translate(glm::vec3(87.8, 25, 80));
+
+	frame3_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame3_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame3_v1->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+	frame3_v1->translate(glm::vec3(-53.9, 25, 50));
+
+	frame4_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame4_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame4_v1->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+	frame4_v1->translate(glm::vec3(87.8, 25, 50));
+
+	frame5_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame5_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame5_v1->translate(glm::vec3(-4.45,15,38));
+
+	frame6_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame6_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame6_v1->translate(glm::vec3(-26.15, 15, 38));
+
+	frame7_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame7_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame7_v1->translate(glm::vec3(-4.45, 15, 63));
+
+	frame8_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame8_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame8_v1->translate(glm::vec3(-26.15, 15, 63));
+
+	frame9_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame9_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame9_v1->translate(glm::vec3(-4.45, 15, 88));
+
+	frame10_v1 = new Model("Frame2", "Planks011", "simplest");
+	frame10_v1->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame10_v1->translate(glm::vec3(-26.15, 15, 88));
+
+
+	frame1_v2 = new Model("Frame2", "Planks011", "simplest");
+	frame1_v2->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame1_v2->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	frame1_v2->translate(glm::vec3(-47,-14,-13));
+
+	frame2_v2 = new Model("Frame2", "Planks011", "simplest");
+	frame2_v2->scale(glm::vec3(0.5, 0.5, 0.5));
+	frame2_v2->rotate(90.0f * PI / 180.0f, glm::vec3(1, 0, 0));
+	frame2_v2->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	frame2_v2->translate(glm::vec3(-48.5,21,-13));
+	
+
+	canvas1_stanczyk = new Model("Stanczyk", "Stanczyk", "simplest");
+	canvas1_stanczyk->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas1_stanczyk->translate(glm::vec3(41.225, -26.7, 10));
+	canvas1_stanczyk->scale(glm::vec3(2.55,2.5,2.5));
+
+	canvas2_karabin = new Model("Stanczyk", "Karabin", "simplest");
+	canvas2_karabin->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas2_karabin->translate(glm::vec3(26.18, -26.7, 10));
+	canvas2_karabin->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas3_wenus = new Model("Stanczyk", "NarodzinyWenus", "simplest");
+	canvas3_wenus->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas3_wenus->translate(glm::vec3(26.18, 44.18, 10));
+	canvas3_wenus->scale(glm::vec3(2.55, 2.5, 2.5));
+	
+	canvas4_bacchus = new Model("Stanczyk", "Bacchus", "simplest");
+	canvas4_bacchus->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas4_bacchus->translate(glm::vec3(41.225, 44.18, 10));
+	canvas4_bacchus->scale(glm::vec3(2.55, 2.5, 2.5));
+
 	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
 	swiatlo->translate(glm::vec3(0.0, 5.0, 0.0));
 }
@@ -216,7 +331,29 @@ void drawScene(GLFWwindow* window) {
 	pedestal_nature2->draw();
 	pedestal_nature3->draw();
 	pedestal_nature4->draw();
-	/*big_frame1->draw();*/
+	big_frame1->draw();
+	floor1->draw();
+	column1->draw();
+	column2->draw();
+
+	frame1_v1->draw();
+	frame2_v1->draw();
+	frame3_v1->draw();
+	frame4_v1->draw();
+	frame5_v1->draw();
+	frame6_v1->draw();
+	frame7_v1->draw();
+	frame8_v1->draw();
+	frame9_v1->draw();
+	frame10_v1->draw();
+
+	frame1_v2->draw();
+	frame2_v2->draw();
+
+	canvas1_stanczyk->draw();
+	canvas2_karabin->draw();
+	canvas3_wenus->draw();
+	canvas4_bacchus->draw();
 
 	swiatlo->draw();
 
