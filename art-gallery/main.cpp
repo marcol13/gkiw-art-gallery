@@ -51,6 +51,8 @@ Model* venus;
 Model* swiatlo;
 Model* pedestal_venus;
 Model* pedestal_venus2;
+Model* pedestal_venus3;
+Model* pedestal_venus4;
 Model* pedestal_nature1;
 Model* pedestal_nature2;
 Model* pedestal_nature3;
@@ -59,6 +61,9 @@ Model* big_frame1;
 Model* floor1;
 Model* column1;
 Model* column2;
+Model* column3;
+Model* column4;
+Model* mask;
 
 Model* frame1_v1;
 Model* frame2_v1;
@@ -74,10 +79,17 @@ Model* frame10_v1;
 Model* frame1_v2;
 Model* frame2_v2;
 
+Model* canvas0_supper;
 Model* canvas1_stanczyk;
 Model* canvas2_karabin;
 Model* canvas3_wenus;
 Model* canvas4_bacchus;
+Model* canvas5_noc;
+Model* canvas6_noc;
+Model* canvas7_noc;
+Model* canvas8_noc;
+Model* canvas9_noc;
+Model* canvas10_noc;
 
 //LIGHTING
 //glm::vec3 lightPos = glm::vec3(0.0, 5.0, 0.0);
@@ -174,6 +186,21 @@ void initOpenGLProgram(GLFWwindow* window) {
 	pedestal_venus2->scale(glm::vec3(0.3, 0.25, 0.3));
 	pedestal_venus2->translate(glm::vec3(-26, 6.85, 240));
 
+	pedestal_venus3 = new Model("Pedestal2", "Marble019", "simplest");
+	pedestal_venus3->scale(glm::vec3(0.3, 0.25, 0.3));
+	pedestal_venus3->translate(glm::vec3(50, 6.85, 7));
+	pedestal_venus3->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+
+	pedestal_venus3 = new Model("Pedestal2", "Marble019", "simplest");
+	pedestal_venus3->scale(glm::vec3(0.3, 0.25, 0.3));
+	pedestal_venus3->translate(glm::vec3(50, 6.85, 7));
+	pedestal_venus3->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+
+	pedestal_venus4 = new Model("Pedestal2", "Marble019", "simplest");
+	pedestal_venus4->scale(glm::vec3(0.3, 0.25, 0.3));
+	pedestal_venus4->translate(glm::vec3(50, 6.85, -63));
+	pedestal_venus4->rotate(90.0f * PI / 180.0f, glm::vec3(0, 1, 0));
+
 	pedestal_nature1 = new Model("Pedestal3", "Marble019", "simplest");
 	pedestal_nature1->translate(glm::vec3(3, 1.65, 3));
 	pedestal_nature1->scale(glm::vec3(2.5, 2.5, 2.5));
@@ -218,6 +245,14 @@ void initOpenGLProgram(GLFWwindow* window) {
 	column2 = new Model("Column2", "DoricColumn", "simplest");
 	column2->scale(glm::vec3(0.7, 0.73, 0.7));
 	column2->translate(glm::vec3(70, -0.6, -45));
+
+	column3 = new Model("Column2", "DoricColumn", "simplest");
+	column3->scale(glm::vec3(0.7, 0.73, 0.7));
+	column3->translate(glm::vec3(25, -0.6, -45));
+
+	column4 = new Model("Column2", "DoricColumn", "simplest");
+	column4->scale(glm::vec3(0.7, 0.73, 0.7));
+	column4->translate(glm::vec3(25, -0.6, 20));
 	
 	frame1_v1 = new Model("Frame2", "Planks011", "simplest");
 	frame1_v1->scale(glm::vec3(0.5, 0.5, 0.5));
@@ -277,6 +312,10 @@ void initOpenGLProgram(GLFWwindow* window) {
 	frame2_v2->translate(glm::vec3(-48.5,21,-13));
 	
 
+	canvas0_supper = new Model("BigPainting", "LastSupper", "simplest");
+	canvas0_supper->translate(glm::vec3(53, 10.8, -8.7));
+	canvas0_supper->scale(glm::vec3(3.2, 3.75, 3.42));
+
 	canvas1_stanczyk = new Model("Stanczyk", "Stanczyk", "simplest");
 	canvas1_stanczyk->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas1_stanczyk->translate(glm::vec3(41.225, -26.7, 10));
@@ -296,6 +335,47 @@ void initOpenGLProgram(GLFWwindow* window) {
 	canvas4_bacchus->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas4_bacchus->translate(glm::vec3(41.225, 44.18, 10));
 	canvas4_bacchus->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas5_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas5_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas5_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas5_noc->translate(glm::vec3(-17.8, 2.45, 5));
+	canvas5_noc->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas6_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas6_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas6_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas6_noc->translate(glm::vec3(-30.3, 2.45, 5));
+	canvas6_noc->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas7_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas7_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas7_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas7_noc->translate(glm::vec3(-42.8, 2.45, 5));
+	canvas7_noc->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas8_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas8_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas8_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas8_noc->translate(glm::vec3(-17.8, 13.3, 5));
+	canvas8_noc->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas9_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas9_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas9_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas9_noc->translate(glm::vec3(-30.3, 13.3, 5));
+	canvas9_noc->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	canvas10_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas10_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
+	canvas10_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
+	canvas10_noc->translate(glm::vec3(-42.8, 13.3, 5));
+	canvas10_noc->scale(glm::vec3(2.55, 2.5, 2.5));
+
+	mask = new Model("Mask", "Mask", "simplest");
+	mask->translate(glm::vec3(4.65, 2.21, 6.7));
+	mask->rotate(150.0f * PI / 180.0f, glm::vec3(0, -1, 0));
+	mask->scale(glm::vec3(0.8, 0.8, 0.8));
 
 	swiatlo = new Model("LightsourceCube", "bricks066", "lightsource");
 	swiatlo->translate(glm::vec3(0.0, 5.0, 0.0));
@@ -327,6 +407,8 @@ void drawScene(GLFWwindow* window) {
 	venus->draw();
 	pedestal_venus->draw();
 	pedestal_venus2->draw();
+	pedestal_venus3->draw();
+	pedestal_venus4->draw();
 	pedestal_nature1->draw();
 	pedestal_nature2->draw();
 	pedestal_nature3->draw();
@@ -335,6 +417,8 @@ void drawScene(GLFWwindow* window) {
 	floor1->draw();
 	column1->draw();
 	column2->draw();
+	column3->draw();
+	column4->draw();
 
 	frame1_v1->draw();
 	frame2_v1->draw();
@@ -350,10 +434,19 @@ void drawScene(GLFWwindow* window) {
 	frame1_v2->draw();
 	frame2_v2->draw();
 
+	canvas0_supper->draw();
 	canvas1_stanczyk->draw();
 	canvas2_karabin->draw();
 	canvas3_wenus->draw();
 	canvas4_bacchus->draw();
+	canvas5_noc->draw();
+	canvas6_noc->draw();
+	canvas7_noc->draw();
+	canvas8_noc->draw();
+	canvas9_noc->draw();
+	canvas10_noc->draw();
+
+	mask->draw();
 
 	swiatlo->draw();
 
