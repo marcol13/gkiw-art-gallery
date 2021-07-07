@@ -64,6 +64,12 @@ Model* lampaEddie4;
 Model* lampaDome1;
 Model* lampaDome2;
 
+Model* visitor1;
+Model* visitor2;
+Model* visitor3;
+Model* visitor4;
+Model* visitor5;
+
 Model* EddieHall;
 Model* HallThor;
 Model* Dome1;
@@ -474,6 +480,13 @@ void initOpenGLProgram(GLFWwindow* window) {
 	ok_sculpture->rotate(200.0f * PI / 180.0f, glm::vec3(0, 1, 0));
 	ok_sculpture->translate(glm::vec3(236, 46.8, 38.8));
 
+	visitor1 = new Model("visitor1", "visitor", "simplest");
+	visitor1->rotate(PI / 2.0f, glm::vec3(0, 1, 0));
+	visitor2 = new Model("visitor2", "visitor", "simplest");
+	visitor3 = new Model("visitor3", "visitor", "simplest");
+	visitor4 = new Model("visitor4", "visitor", "simplest");
+	visitor5 = new Model("visitor5", "visitor", "simplest");
+
 	swiatloDome1 = new Model("LightsourceCube", "bricks066", "lightsource");
 	swiatloDome1->translate(swiatloDome1->pointLightPositions[0]);
 
@@ -522,9 +535,18 @@ void walk() {
 
 }
 
-
+float v1 = 0;
+bool d1 = true;
+float v2 = 0;
+bool d2 = true;
+float v3 = 0;
+bool d3 = true;
+float v4 = 0;
+bool d4 = true;
+float v5 = 10;
+bool d5 = true;
 //Procedura rysująca zawartość sceny
-void drawScene(GLFWwindow* window) {
+void drawScene(GLFWwindow* window, float delta_time) {
 	//************Tutaj umieszczaj kod rysujący obraz******************l
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -547,7 +569,7 @@ void drawScene(GLFWwindow* window) {
 	pedestal_nature3->draw();
 	pedestal_nature4->draw();
 	big_frame1->draw();
-	floor1->draw();
+	//floor1->draw();
 	column1->draw();
 	column2->draw();
 	column3->draw();
@@ -592,6 +614,28 @@ void drawScene(GLFWwindow* window) {
 	thanos->draw();
 	napoleon->draw();
 	ok_sculpture->draw();
+
+	if (d1) {
+		if (v1 < 20) {v1 += delta_time * 20 / 10;}
+		else {d1 = false;
+			v1 = 0;
+			visitor1->rotate(PI, glm::vec3(0.0f, 1.0f, 0.0f));
+		}
+	}
+	else {
+		if (v1 < 20) {v1 += delta_time * 20 / 10;}
+		else {d1 = true;
+			visitor1->rotate(PI, glm::vec3(0.0f, 1.0f, 0.0f));
+			v1 = 0;
+		}
+	}
+	visitor1->translate(glm::vec3(v1, 0, 0));
+	visitor1->draw();
+	visitor1->translate(glm::vec3(-v1, 0, 0));
+	visitor2->draw();
+	visitor3->draw();
+	visitor4->draw();
+	visitor5->draw();
 
 	swiatloDome1->draw();
 	swiatloThor1->draw();
@@ -669,7 +713,7 @@ int main(void)
 		cursor_y = 0;
 
 		glfwSetTime(0); //Zeruj timer - na razie nie potrzebny, później się wykorzysta
-		drawScene(window); //Wykonaj procedurę rysującą
+		drawScene(window, delta_time); //Wykonaj procedurę rysującą
 		glfwPollEvents(); //Wykonaj procedury callback w zalezności od zdarzeń jakie zaszły.
 	}
 
