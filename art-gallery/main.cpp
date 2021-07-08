@@ -425,19 +425,19 @@ void initOpenGLProgram(GLFWwindow* window) {
 	canvas9_noc->translate(glm::vec3(-30.3, 13.3, 5));
 	canvas9_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas10_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas10_noc = new Model("Stanczyk", "Francja", "simplest");
 	canvas10_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas10_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas10_noc->translate(glm::vec3(-42.8, 13.3, 5));
 	canvas10_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas11_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas11_noc = new Model("Stanczyk", "Miasto", "simplest");
 	canvas11_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas11_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas11_noc->translate(glm::vec3(-70.8, 23.3, 6.5));
 	canvas11_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
-	canvas12_noc = new Model("Stanczyk", "GwiezdzistaNoc", "simplest");
+	canvas12_noc = new Model("Stanczyk", "Spacer", "simplest");
 	canvas12_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas12_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas12_noc->translate(glm::vec3(-70.8, -7.9, 6.5));
@@ -448,12 +448,12 @@ void initOpenGLProgram(GLFWwindow* window) {
 	canvas1_lasiczka->translate(glm::vec3(-7.89, 24.3, 6.62));
 	canvas1_lasiczka->scale(glm::vec3(2.02, 2.1, 2.27));
 
-	canvas2_lasiczka = new Model("Dama", "DamaZLasiczka", "simplest");
+	canvas2_lasiczka = new Model("Dama", "Perla", "simplest");
 	canvas2_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas2_lasiczka->translate(glm::vec3(-7.89, -87.5, 6.62));
 	canvas2_lasiczka->scale(glm::vec3(2.02, 2.1, 2.27));
 
-	canvas3_lasiczka = new Model("Dama", "DamaZLasiczka", "simplest");
+	canvas3_lasiczka = new Model("Dama", "Autoportret", "simplest");
 	canvas3_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas3_lasiczka->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
 	canvas3_lasiczka->translate(glm::vec3(9.5, 23.55, 6.55));
@@ -480,12 +480,23 @@ void initOpenGLProgram(GLFWwindow* window) {
 	ok_sculpture->rotate(200.0f * PI / 180.0f, glm::vec3(0, 1, 0));
 	ok_sculpture->translate(glm::vec3(236, 46.8, 38.8));
 
-	visitor1 = new Model("visitor1", "visitor", "simplest");
+	visitor1 = new Model("Visitor1", "visitor", "simplest");
+	visitor1->translate(glm::vec3(49, 0, 1.8));
 	visitor1->rotate(PI / 2.0f, glm::vec3(0, 1, 0));
-	visitor2 = new Model("visitor2", "visitor", "simplest");
-	visitor3 = new Model("visitor3", "visitor", "simplest");
-	visitor4 = new Model("visitor4", "visitor", "simplest");
-	visitor5 = new Model("visitor5", "visitor", "simplest");
+
+	visitor2 = new Model("Visitor1", "visitor", "simplest");
+	visitor2->translate(glm::vec3(46, 0, -18.2));
+	visitor2->rotate(PI / 2.0f, glm::vec3(0, -1, 0));
+
+	visitor3 = new Model("Visitor1", "visitor", "simplest");
+	visitor3->translate(glm::vec3(43, 0, 1.8));
+	visitor3->rotate(PI / 2.0f, glm::vec3(0, 1, 0));
+
+	visitor4 = new Model("Visitor1", "visitor", "simplest");
+	visitor4->translate(glm::vec3(19.8, 0, 1.9));
+
+	visitor5 = new Model("Visitor1", "visitor", "simplest");
+	visitor5->translate(glm::vec3(19.8, 0, -19.1));
 
 	swiatloDome1 = new Model("LightsourceCube", "bricks066", "lightsource");
 	swiatloDome1->translate(swiatloDome1->pointLightPositions[0]);
@@ -536,15 +547,20 @@ void walk() {
 }
 
 float v1 = 0;
-bool d1 = true;
+float s1 = 0;
+
 float v2 = 0;
-bool d2 = true;
+float s2 = 0;
+
 float v3 = 0;
-bool d3 = true;
+float s3 = 0;
+
 float v4 = 0;
-bool d4 = true;
-float v5 = 10;
-bool d5 = true;
+float s4 = 0;
+
+float v5 = 0;
+float s5 = 0;
+
 //Procedura rysująca zawartość sceny
 void drawScene(GLFWwindow* window, float delta_time) {
 	//************Tutaj umieszczaj kod rysujący obraz******************l
@@ -569,7 +585,7 @@ void drawScene(GLFWwindow* window, float delta_time) {
 	pedestal_nature3->draw();
 	pedestal_nature4->draw();
 	big_frame1->draw();
-	//floor1->draw();
+	floor1->draw();
 	column1->draw();
 	column2->draw();
 	column3->draw();
@@ -615,26 +631,72 @@ void drawScene(GLFWwindow* window, float delta_time) {
 	napoleon->draw();
 	ok_sculpture->draw();
 
-	if (d1) {
-		if (v1 < 20) {v1 += delta_time * 20 / 10;}
-		else {d1 = false;
-			v1 = 0;
-			visitor1->rotate(PI, glm::vec3(0.0f, 1.0f, 0.0f));
-		}
+	//VISITOR1
+	if (s1 > 20) {
+		visitor1->rotate(180.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		v1 = 0;
+		s1 = 0;
 	}
 	else {
-		if (v1 < 20) {v1 += delta_time * 20 / 10;}
-		else {d1 = true;
-			visitor1->rotate(PI, glm::vec3(0.0f, 1.0f, 0.0f));
-			v1 = 0;
-		}
+		v1 = delta_time * 18 / 10;
+		s1 += v1;
 	}
+
+	//VISITOR2
+	if (s2 > 20) {
+		visitor2->rotate(180.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		v2 = 0;
+		s2 = 0;
+	}
+	else {
+		v2 = delta_time * 20 / 10;
+		s2 += v2;
+	}
+
+	//VISITOR3
+	if (s3 > 20) {
+		visitor3->rotate(180.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		v3 = 0;
+		s3 = 0;
+	}
+	else {
+		v3 = delta_time * 16 / 10;
+		s3 += v3;
+	}
+
+	//VISITOR4
+	if (s4 > 22) {
+		visitor4->rotate(180.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		v4 = 0;
+		s4 = 0;
+	}
+	else {
+		v4 = delta_time * 19 / 10;
+		s4 += v4;
+	}
+
+	//VISITOR5
+	if (s5 > 22) {
+		visitor5->rotate(180.0f * PI / 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		v5 = 0;
+		s5 = 0;
+	}
+	else {
+		v5 = delta_time * 17 / 10;
+		s5 += v5;
+	}
+
+
+
 	visitor1->translate(glm::vec3(v1, 0, 0));
 	visitor1->draw();
-	visitor1->translate(glm::vec3(-v1, 0, 0));
+	visitor2->translate(glm::vec3(v2, 0, 0));
 	visitor2->draw();
+	visitor3->translate(glm::vec3(v3, 0, 0));
 	visitor3->draw();
+	visitor4->translate(glm::vec3(v4, 0, 0));
 	visitor4->draw();
+	visitor5->translate(glm::vec3(v5, 0, 0));
 	visitor5->draw();
 
 	swiatloDome1->draw();
