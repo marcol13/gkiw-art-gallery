@@ -416,25 +416,25 @@ void initOpenGLProgram(GLFWwindow* window) {
 	canvas8_noc = new Model("Stanczyk", "Lekcja", "simplest");
 	canvas8_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas8_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
-	canvas8_noc->translate(glm::vec3(-17.8, 13.3, 5));
+	canvas8_noc->translate(glm::vec3(-17.8, 13.31, 5));
 	canvas8_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
 	canvas9_noc = new Model("Stanczyk", "Stawny", "simplest");
 	canvas9_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas9_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
-	canvas9_noc->translate(glm::vec3(-30.3, 13.3, 5));
+	canvas9_noc->translate(glm::vec3(-30.3, 13.31, 5));
 	canvas9_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
 	canvas10_noc = new Model("Stanczyk", "Francja", "simplest");
 	canvas10_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas10_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
-	canvas10_noc->translate(glm::vec3(-42.8, 13.3, 5));
+	canvas10_noc->translate(glm::vec3(-42.8, 13.31, 5));
 	canvas10_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
 	canvas11_noc = new Model("Stanczyk", "Miasto", "simplest");
 	canvas11_noc->rotate(90.0f * PI / 180.0f, glm::vec3(-1, 0, 0));
 	canvas11_noc->rotate(90.0f * PI / 180.0f, glm::vec3(0, 0, 1));
-	canvas11_noc->translate(glm::vec3(-70.8, 23.3, 6.5));
+	canvas11_noc->translate(glm::vec3(-70.8, 23.31, 6.5));
 	canvas11_noc->scale(glm::vec3(2.55, 2.5, 2.5));
 
 	canvas12_noc = new Model("Stanczyk", "Spacer", "simplest");
